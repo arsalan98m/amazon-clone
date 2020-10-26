@@ -1,3 +1,5 @@
+import {useEffect} from "react";
+import {auth} from "./firebase";
 import './App.css';
 
 
@@ -11,8 +13,37 @@ import CheckOutPage from "./pages/Checkout";
 import LoginPage from "./pages/Login";
  
 import {BrowserRouter as Router, Routes,Route} from "react-router-dom";
+import { useStateValue } from "./context/StateProvider";
+
+
 
 function App() {
+  const [{user},dispatch] = useStateValue();
+
+  useEffect(()=>{
+    // will only run once when the app component loads...
+    auth.onAuthStateChanged(authUser=>{
+      console.log("THe use is >>>",authUser)
+
+      if(authUser){
+        // the user just logged in /the user was logged in
+        dispatch({
+          type: 'SET_USER',
+          user: authUser,
+        })
+
+      }else{
+        // the user is logged out
+        dispatch({
+          type: 'SET_USER',
+          user: null
+        })
+      }
+    })
+
+  },[])
+
+
   return (
 
     <Router>
