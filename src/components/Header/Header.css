@@ -68,3 +68,18 @@
   margin-right: 10px;
   color: white;
 }
+
+@media (max-width: 980px) {
+  .header {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .header__search {
+    margin-bottom: 20px;
+  }
+
+  .header__option {
+    margin-bottom: 20px;
+  }
+}
