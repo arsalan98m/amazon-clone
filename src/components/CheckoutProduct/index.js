@@ -33,9 +33,9 @@ const CheckOutProduct = forwardRef((props,ref)=>{
                     <p key={i}>🌟</p>
                 ))}
             </div>
-
-            <button onClick={removeFromBasket}>Remove from Basket</button>
-
+            
+            {!props.hiddenButton && (<button onClick={removeFromBasket}>Remove from Basket</button>)}
+            
             </div>
  
         </div>
